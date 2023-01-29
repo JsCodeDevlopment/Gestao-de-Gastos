@@ -45,6 +45,7 @@ body{
 }
 .contentInput{
     display: flex;
+    align-items: center;
     gap: 18px;
 }
 .titleTransacoes{
