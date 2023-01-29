@@ -55,7 +55,7 @@ body{
 .transacoesAdicionadas{
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: none;
     gap: 5px;
 }
 /* .transacoesAdicionadas::-webkit-scrollbar-track {
@@ -78,6 +78,10 @@ body{
     border-radius: 5px;
     align-items: center;
 }
+.priceAndTrash{
+    display: flex;
+    gap: 11px;
+}
 #nameInput{
     width: 140px;
     height: 27px;
@@ -85,6 +89,7 @@ body{
     border: solid 2px #02a9fb;
     border-radius: 100px;
     padding-left: 14px;
+    color: #ffff;
 }
 #numberInput{
     width: 114px;
@@ -93,11 +98,15 @@ body{
     border: solid 2px #02a9fb;
     border-radius: 100px;
     padding-left: 14px;
+    color: #ffff;
 }
 #addButton{
     cursor: pointer;
 }
 #darkModeButton{
+    cursor: pointer;
+}
+#trash{
     cursor: pointer;
 }
 footer{
