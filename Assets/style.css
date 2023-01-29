@@ -36,19 +36,47 @@ body{
     justify-content: space-between;
 }
 .container {
-    display: flex;
     max-width: 482px;
     height: 380px;
     background-color: #131f2b;
     margin: 22px;
     padding: 14px;
     border-radius: 30px;
-    flex-wrap: wrap;
-    align-items: flex-start;
 }
 .contentInput{
     display: flex;
     gap: 18px;
+}
+.titleTransacoes{
+    display: flex;
+    padding: 16px 0;
+    justify-content: center;
+}
+.transacoesAdicionadas{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    gap: 5px;
+}
+/* .transacoesAdicionadas::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+.transacoesAdicionadas::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+    height: 50px;
+}
+.transacoesAdicionadas::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+} */
+.card{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px 0 16px;
+    background-color: #121617;
+    height: 36px;
+    border-radius: 5px;
+    align-items: center;
 }
 #nameInput{
     width: 140px;
@@ -66,10 +94,28 @@ body{
     border-radius: 100px;
     padding-left: 14px;
 }
+#addButton{
+    cursor: pointer;
+}
+#darkModeButton{
+    cursor: pointer;
+}
 footer{
     display: flex;
+    align-items: center;
     max-width: 526px;
     height: 60px;
+    gap: 57px;
     background-color: #131f2b;
     border-radius: 0 0 30px 30px;
+    padding: 8px 58px;
+    justify-content: space-between;
+}
+.receitas{
+    display: flex;
+    gap: 6px;
+}
+.despesas{
+    display: flex;
+    gap: 6px;
 }

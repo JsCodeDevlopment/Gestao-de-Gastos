@@ -16,3 +16,21 @@
     font-size: 26px;
     color: #02a9fb;
 }
+.littleFont{
+    font-family: Roboto, arial;
+    font-weight: 500;
+    font-size: 10px;
+    color: #fff;
+}
+#green{
+    font-family: Roboto, arial;
+    font-weight: 500;
+    font-size: 13px;
+    color: #0ec074;
+}
+#red{
+    font-family: Roboto, arial;
+    font-weight: 500;
+    font-size: 13px;
+    color: #f6545d;
+}

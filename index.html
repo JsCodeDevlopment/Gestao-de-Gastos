@@ -28,29 +28,39 @@
             <p class="mainFont">Adicionar Transação</p>
             <input id="nameInput" type="text" alt="name" placeholder="Nome:">
             <input id="numberInput" type="number" alt="value" placeholder="Valor:">
-            <img src="Imagens/ADD.png" alt="addButton" width="27px" height="27px">
+            <img id="addButton" src="Imagens/ADD.png" alt="addButton" width="27px" height="27px">
         </div>
-        <div>
+        <div class="titleTransacoes">
             <p class="mainFont">TRANSAÇÕES</p>
         </div>
-        <div>
-            <P class="mainFont">Salário</P>
-            <P class="mainFont">+ R$ 1.000,00</P>
+        <div class="transacoesAdicionadas">
+            <div class="card">
+                <P class="mainFont">Salário</P>
+                <P class="mainFont">+ R$ 1.000,00</P>
+            </div>
+            <div class="card">
+                <P class="mainFont">Salário</P>
+                <P class="mainFont">+ R$ 1.000,00</P>
+            </div>
         </div>
         </section>
         <footer>
-            <div>
-                <img src="Imagens/RECEITAS.png" alt="receitas">
-                <p>Receitas</p>
-                <p>R$ 1.000,00</p>
+            <div class="receitas">
+                <img src="Imagens/RECEITAS.png" alt="receitas" width="32px" height="32px">
+                <div>
+                    <p class="littleFont">Receitas</p>
+                    <p id="green">R$ 1.000,00</p>
+                </div>
             </div>
-            <div>
-                <img src="Imagens/BUTTON LIGHT MODE.png" alt="receitas">
+            <div class="darkModeButton">
+                <img id="darkModeButton" src="Imagens/BUTTON LIGHT MODE.png" alt="receitas" width="45px" height="45px">
             </div>
-            <div>
-                <img src="Imagens/DESPESAS.png" alt="despesas">
-                <p>Despesas</p>
-                <p>R$ 1.000,00</p>
+            <div class="despesas">
+                <img src="Imagens/DESPESAS.png" alt="despesas" width="32px" height="32px">
+                <div>
+                    <p class="littleFont">Despesas</p>
+                    <p id="red">R$ 1.000,00</p>
+                </div>
             </div>
         </footer>
     </main>
