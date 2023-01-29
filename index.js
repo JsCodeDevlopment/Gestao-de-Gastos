@@ -23,6 +23,7 @@ addButton.addEventListener("click", ()=>{
     trashImage.src = "Imagens/LIXEIRA FECHADA.png"
     trashImage.width = "14"
     trashImage.height = "18"
+    trashImage.id = "trash"
     divPriceAndTrash.append(trashImage)
 
     
