@@ -31,16 +31,18 @@ addButton.addEventListener("click", ()=>{
     divPriceAndTrash.append(trashImage)
 
     const atualTrashImage = document.querySelector("#trash")
-    let atualTrash = "Imagens/LIXEIRA FECHADA.png";
-    trashImage.addEventListener("mouseover", ()=>{
-        if (atualTrash === "Imagens/LIXEIRA FECHADA.png") {
-            atualTrash = "Imagens/LIXEIRA ABERTA.png";
-            atualTrashImage.setAttribute("src", "Imagens/LIXEIRA ABERTA.png");
-          } else {
-            atualTrash = "Imagens/LIXEIRA ABERTA.png";
-            atualTrashImage.setAttribute("src", "Imagens/LIXEIRA FECHADA.png");
-          }
-    })
-
-    console.log(divReceptora)
+    let atualTrash = JSON.stringify(atualTrashImage.src);
+    function toggleTrashImage(atualTrash, atualTrashImage) {
+      atualTrashImage.addEventListener("mouseover", ()=> {
+        atualTrashImage.setAttribute("src", "Imagens/LIXEIRA ABERTA.png");
+      });
+      atualTrashImage.addEventListener("mouseout", ()=> {
+        if (atualTrash === atualTrash) {
+          atualTrashImage.setAttribute("src", "Imagens/LIXEIRA FECHADA.png");
+        }
+      });
+    }
+    toggleTrashImage(atualTrash, atualTrashImage)
+    
+    console.log(atualTrash)
 })
