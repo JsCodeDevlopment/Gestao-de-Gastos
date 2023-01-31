@@ -102,12 +102,15 @@ body{
     color: #ffff;
 }
 #addButton{
+    all: unset;
     cursor: pointer;
 }
 #darkModeButton{
+    all: unset;
     cursor: pointer;
 }
-#trash{
+#deleteButton{
+    all: unset;
     cursor: pointer;
 }
 footer{
