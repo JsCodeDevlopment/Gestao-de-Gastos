@@ -31,8 +31,7 @@ addButton.addEventListener("click", ()=>{
     divPriceAndTrash.append(trashImage)
 
     const atualTrashImage = document.querySelector("#trash")
-    let atualTrash = JSON.stringify(atualTrashImage.src);
-    function toggleTrashImage(atualTrash, atualTrashImage) {
+    function toggleTrashImage(atualTrashImage) {
       atualTrashImage.addEventListener("mouseover", ()=> {
         atualTrashImage.setAttribute("src", "Imagens/LIXEIRA ABERTA.png");
       });
@@ -40,8 +39,7 @@ addButton.addEventListener("click", ()=>{
         atualTrashImage.setAttribute("src", "Imagens/LIXEIRA FECHADA.png");
       });
     }
-    toggleTrashImage(atualTrash, atualTrashImage)
-    
-    console.log(atualTrash)
+    toggleTrashImage(atualTrashImage)
+
+    console.log(atualTrashImage)
   })
-  
