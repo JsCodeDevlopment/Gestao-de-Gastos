@@ -37,12 +37,11 @@ addButton.addEventListener("click", ()=>{
         atualTrashImage.setAttribute("src", "Imagens/LIXEIRA ABERTA.png");
       });
       atualTrashImage.addEventListener("mouseout", ()=> {
-        if (atualTrash === atualTrash) {
-          atualTrashImage.setAttribute("src", "Imagens/LIXEIRA FECHADA.png");
-        }
+        atualTrashImage.setAttribute("src", "Imagens/LIXEIRA FECHADA.png");
       });
     }
     toggleTrashImage(atualTrash, atualTrashImage)
     
     console.log(atualTrash)
-})
+  })
+  
