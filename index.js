@@ -1,17 +1,21 @@
 import { toggleTrashImage } from "./animations.js";
-let indice = 0;
+let indiceCard = 0;
 
 const inputName = document.querySelector("#nameInput")
 const inputValue = document.querySelector("#numberInput")
 const addButton = document.querySelector("#addButton")
 const divReceptora = document.querySelector(".transacoesAdicionadas")
+const pValorReceitas = document.querySelector("#green")
+
+let positiveValue = [];
+let negativeValue = [];
 
 addButton.addEventListener("click", ()=>{
-    indice++
+    indiceCard ++
 
     const divCard = document.createElement("div");
     divCard.className = "card"
-    divCard.id = "card-" + indice;
+    divCard.id = "card-" + indiceCard;
     divReceptora.appendChild(divCard)
 
     const pName = document.createElement("p");
@@ -27,6 +31,7 @@ addButton.addEventListener("click", ()=>{
     const currencyFormatter = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
     pValue.className = "mainFont"
     pValue.innerText = currencyFormatter.format(inputValue.value)
+    pValue.id = "valor-" + indiceCard;
     divPriceAndTrash.append(pValue)
 
     const deleteButton = document.createElement("button");
@@ -47,4 +52,25 @@ addButton.addEventListener("click", ()=>{
       const atualTrashImage = document.querySelector(`#${card.id} .trash`)
       toggleTrashImage(atualTrashImage)
     })
+    document.querySelectorAll("valor-").forEach((pValue)=>{
+      const pValueAcrecimo = document.querySelector(`#${pValue.id}`)
+    })
+    
+    function addNumber(input) {
+      if (input >= 0) {
+        positiveValue.push(input);
+        console.log(`${positiveValue} Esse é o valor positivo`)
+      } else {
+        negativeValue.push(input);
+        console.log(`${negativeValue} Esse é o valor negativo`)
+      }
+    }
+    let input = inputValue.value
+    addNumber(input);
+
+    const valoresPositivos = positiveValue.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    const valoresNegativos = negativeValue.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    
+    console.log(valoresPositivos)
+    console.log(valoresNegativos)
   })

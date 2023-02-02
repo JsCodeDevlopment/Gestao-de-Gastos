@@ -6,6 +6,3 @@ export function toggleTrashImage(atualTrashImage) {
       atualTrashImage.setAttribute("src", "Imagens/LIXEIRA FECHADA.png");
     });
   }
-
-
-  
