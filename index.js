@@ -6,6 +6,7 @@ const inputValue = document.querySelector("#numberInput")
 const addButton = document.querySelector("#addButton")
 const divReceptora = document.querySelector(".transacoesAdicionadas")
 const pValorReceitas = document.querySelector("#green")
+const pValorDespesas = document.querySelector("#red")
 
 let positiveValue = [];
 let negativeValue = [];
@@ -65,12 +66,17 @@ addButton.addEventListener("click", ()=>{
         console.log(`${negativeValue} Esse é o valor negativo`)
       }
     }
-    let input = inputValue.value
+    let input = parseInt(inputValue.value)
     addNumber(input);
 
     const valoresPositivos = positiveValue.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     const valoresNegativos = negativeValue.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+
+
+    const valueGreen = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
+    pValorReceitas.innerText = valueGreen.format(valoresPositivos)
+    const valueRed = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
+    pValorDespesas.innerText = valueRed.format(valoresNegativos)
     
-    console.log(valoresPositivos)
-    console.log(valoresNegativos)
   })
