@@ -78,8 +78,8 @@ addButton.addEventListener("click", ()=>{
     const valueRed = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
     pValorDespesas.innerText = valueRed.format(valoresNegativos)
     
-    const SaldoAtualResult = parseFloat(valueGreen.format(valoresPositivos).replace(/[^0-9.-]+/g,""))
-     - parseFloat(valueRed.format(valoresNegativos).replace(/[^0-9.-]+/g,""))
+    const SaldoAtualResult = parseFloat(valueGreen.format(valoresPositivos).replace(/[^0-9,]+/g,"").replace(",", "."))
+     - parseFloat(valueRed.format(valoresNegativos).replace(/[^0-9,]+/g,"").replace(",", "."))
     const valueAtualCalculed = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
     pSaldoAtual.innerText = valueAtualCalculed.format(SaldoAtualResult)
 
