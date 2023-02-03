@@ -7,6 +7,7 @@ const addButton = document.querySelector("#addButton")
 const divReceptora = document.querySelector(".transacoesAdicionadas")
 const pValorReceitas = document.querySelector("#green")
 const pValorDespesas = document.querySelector("#red")
+const pSaldoAtual = document.querySelector(".titleFontValue")
 
 let positiveValue = [];
 let negativeValue = [];
@@ -72,11 +73,15 @@ addButton.addEventListener("click", ()=>{
     const valoresPositivos = positiveValue.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     const valoresNegativos = negativeValue.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
-
-
     const valueGreen = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
     pValorReceitas.innerText = valueGreen.format(valoresPositivos)
     const valueRed = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
     pValorDespesas.innerText = valueRed.format(valoresNegativos)
     
+    const SaldoAtualResult = parseFloat(valueGreen.format(valoresPositivos).replace(/[^0-9.-]+/g,""))
+     - parseFloat(valueRed.format(valoresNegativos).replace(/[^0-9.-]+/g,""))
+    const valueAtualCalculed = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
+    pSaldoAtual.innerText = valueAtualCalculed.format(SaldoAtualResult)
+
+    console.log(SaldoAtualResult)
   })
