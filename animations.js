@@ -14,3 +14,11 @@ export function toggleTrashImage(atualTrashImage) {
       atualTrashImage.setAttribute("src", "Imagens/LIXEIRA FECHADA.png");
     });
   }
+
+export function deleteInputValues () {
+  const inputName = document.querySelector("#nameInput")
+  const inputValue = document.querySelector("#numberInput")
+
+  inputName.value = ""
+  inputValue.value = ""
+}

@@ -1,5 +1,6 @@
 import { start } from "./animations.js";
 import { toggleTrashImage } from "./animations.js";
+import { deleteInputValues } from "./animations.js";
 
 start()
 
@@ -97,6 +98,7 @@ addButton.addEventListener("click", ()=>{
     updateRevenue(positiveValues)
     updateExpense(negativeValues)
     updateBalance(positiveValues, negativeValues)
+    deleteInputValues()
   })
 
   function updateBalance (positiveValues, negativeValues) {
@@ -106,7 +108,6 @@ addButton.addEventListener("click", ()=>{
     const calc = valoresPositivos + valoresNegativos;
 
     pSaldoAtual.innerText = currencyFormatter.format(calc)
-    console.log(calc)
   }
 
   function updateRevenue (positiveValues) {
