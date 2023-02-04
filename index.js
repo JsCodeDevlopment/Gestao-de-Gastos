@@ -1,6 +1,8 @@
 import { toggleTrashImage } from "./animations.js";
 let indiceCard = 0;
 
+const currencyFormatter = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
+
 const inputName = document.querySelector("#nameInput")
 const inputValue = document.querySelector("#numberInput")
 const addButton = document.querySelector("#addButton")
@@ -9,8 +11,12 @@ const pValorReceitas = document.querySelector("#green")
 const pValorDespesas = document.querySelector("#red")
 const pSaldoAtual = document.querySelector(".titleFontValue")
 
-let positiveValue = [];
-let negativeValue = [];
+pSaldoAtual.innerText = "R$ 0,00"
+pValorReceitas.innerText = "R$ 0,00"
+pValorDespesas.innerText = "R$ 0,00"
+
+let positiveValues = [];
+let negativeValues = [];
 
 addButton.addEventListener("click", ()=>{
     indiceCard ++
@@ -30,7 +36,6 @@ addButton.addEventListener("click", ()=>{
     divCard.append(divPriceAndTrash)
 
     const pValue = document.createElement("p");
-    const currencyFormatter = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
     pValue.className = "mainFont"
     pValue.innerText = currencyFormatter.format(inputValue.value)
     pValue.id = "valor-" + indiceCard;
@@ -41,7 +46,24 @@ addButton.addEventListener("click", ()=>{
     deleteButton.addEventListener("click", ()=>{
       const card = deleteButton.closest(".card")
       card.remove()
+      function removeValue (input) {
+        if (input >= 0) {
+          positiveValues = positiveValues.filter(function(el) {
+            return el !== input;
+          }); 
+        } else {
+          negativeValues = negativeValues.filter(function(el) {
+            return el !== input;})
+          }
+          updateRevenue(positiveValues)
+          updateExpense(negativeValues)
+          updateBalance(positiveValues, negativeValues)
+          
+        }
+      removeValue(input)
+
     })
+
     const trashImage = document.createElement("img");
     trashImage.src = "Imagens/LIXEIRA FECHADA.png"
     trashImage.width = "14"
@@ -60,28 +82,37 @@ addButton.addEventListener("click", ()=>{
     
     function addNumber(input) {
       if (input >= 0) {
-        positiveValue.push(input);
-        console.log(`${positiveValue} Esse é o valor positivo`)
+        positiveValues.push(input);
       } else {
-        negativeValue.push(input);
-        console.log(`${negativeValue} Esse é o valor negativo`)
+        negativeValues.push(input);
       }
     }
     let input = parseInt(inputValue.value)
     addNumber(input);
 
-    const valoresPositivos = positiveValue.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    const valoresNegativos = negativeValue.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-
-    const valueGreen = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
-    pValorReceitas.innerText = valueGreen.format(valoresPositivos)
-    const valueRed = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
-    pValorDespesas.innerText = valueRed.format(valoresNegativos)
-    
-    const SaldoAtualResult = parseFloat(valueGreen.format(valoresPositivos).replace(/[^0-9,]+/g,"").replace(",", "."))
-     - parseFloat(valueRed.format(valoresNegativos).replace(/[^0-9,]+/g,"").replace(",", "."))
-    const valueAtualCalculed = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
-    pSaldoAtual.innerText = valueAtualCalculed.format(SaldoAtualResult)
-
-    console.log(SaldoAtualResult)
+    updateRevenue(positiveValues)
+    updateExpense(negativeValues)
+    updateBalance(positiveValues, negativeValues)
   })
+  
+
+  function updateBalance (positiveValues, negativeValues) {
+    const valoresPositivos = positiveValues.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    const valoresNegativos = negativeValues.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+    const calc = valoresPositivos + valoresNegativos;
+
+    pSaldoAtual.innerText = currencyFormatter.format(calc)
+    console.log(calc)
+  }
+  
+
+  function updateRevenue (positiveValues) {
+    const newRevenue = positiveValues.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    pValorReceitas.innerText = currencyFormatter.format(newRevenue)
+  }
+
+  function updateExpense (negativeValues) {
+    const newExpense = negativeValues.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    pValorDespesas.innerText = currencyFormatter.format(newExpense)
+  }
