@@ -1,4 +1,8 @@
+import { start } from "./animations.js";
 import { toggleTrashImage } from "./animations.js";
+
+start()
+
 let indiceCard = 0;
 
 const currencyFormatter = new Intl.NumberFormat(undefined, { style: "currency", currency: "BRL" })
@@ -10,6 +14,7 @@ const divReceptora = document.querySelector(".transacoesAdicionadas")
 const pValorReceitas = document.querySelector("#green")
 const pValorDespesas = document.querySelector("#red")
 const pSaldoAtual = document.querySelector(".titleFontValue")
+
 
 pSaldoAtual.innerText = "R$ 0,00"
 pValorReceitas.innerText = "R$ 0,00"
@@ -61,7 +66,6 @@ addButton.addEventListener("click", ()=>{
           
         }
       removeValue(input)
-
     })
 
     const trashImage = document.createElement("img");
@@ -94,7 +98,6 @@ addButton.addEventListener("click", ()=>{
     updateExpense(negativeValues)
     updateBalance(positiveValues, negativeValues)
   })
-  
 
   function updateBalance (positiveValues, negativeValues) {
     const valoresPositivos = positiveValues.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
@@ -105,7 +108,6 @@ addButton.addEventListener("click", ()=>{
     pSaldoAtual.innerText = currencyFormatter.format(calc)
     console.log(calc)
   }
-  
 
   function updateRevenue (positiveValues) {
     const newRevenue = positiveValues.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
