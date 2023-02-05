@@ -104,9 +104,17 @@ body{
     all: unset;
     cursor: pointer;
 }
+#addButton:hover{
+    transform: scale(1.1);
+    transition: all, 0.2s;
+}
 #darkModeButton{
     all: unset;
     cursor: pointer;
+}
+#darkModeButton:hover{
+    transform: scale(1.1);
+    transition: all, 0.2s;
 }
 #deleteButton{
     all: unset;
