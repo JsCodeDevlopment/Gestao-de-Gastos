@@ -25,6 +25,7 @@ let positiveValues = [];
 let negativeValues = [];
 
 addButton.addEventListener("click", ()=>{
+
     indiceCard ++
 
     const divCard = document.createElement("div");
@@ -99,6 +100,8 @@ addButton.addEventListener("click", ()=>{
     updateExpense(negativeValues)
     updateBalance(positiveValues, negativeValues)
     deleteInputValues()
+    sessionStorage.setItem('positiveValues', JSON.stringify(positiveValues))
+    sessionStorage.setItem('negativeValues', JSON.stringify(negativeValues))
   })
 
   function updateBalance (positiveValues, negativeValues) {
@@ -119,3 +122,6 @@ addButton.addEventListener("click", ()=>{
     const newExpense = negativeValues.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     pValorDespesas.innerText = currencyFormatter.format(newExpense)
   }
+
+  sessionStorage.setItem('positiveValues', JSON.stringify(positiveValues)) || [];
+  sessionStorage.setItem('negativeValues', JSON.stringify(negativeValues)) || [];
