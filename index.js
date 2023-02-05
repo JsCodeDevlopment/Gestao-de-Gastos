@@ -1,6 +1,6 @@
-import { start } from "./animations.js";
-import { toggleTrashImage } from "./animations.js";
-import { deleteInputValues } from "./animations.js";
+import { start } from "./Modules/animations.js";
+import { toggleTrashImage } from "./Modules/animations.js";
+import { deleteInputValues } from "./Modules/animations.js";
 
 start()
 

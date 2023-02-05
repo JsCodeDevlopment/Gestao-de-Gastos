@@ -57,9 +57,18 @@ body{
     display: flex;
     flex-direction: column;
     height: 270px;
-    overflow-y: scroll;
+    overflow-y: auto;
     gap: 5px;
 }
+.transacoesAdicionadas::-webkit-scrollbar {
+    width: 10px;
+    background-color: #131f2b;
+  }
+  
+.transacoesAdicionadas::-webkit-scrollbar-thumb {
+    background-color: #02a9fb;
+    border-radius: 10px;
+  }
 .card{
     display: flex;
     justify-content: space-between;
