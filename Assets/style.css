@@ -56,20 +56,10 @@ body{
 .transacoesAdicionadas{
     display: flex;
     flex-direction: column;
-    overflow-y: none;
+    height: 270px;
+    overflow-y: scroll;
     gap: 5px;
 }
-/* .transacoesAdicionadas::-webkit-scrollbar-track {
-    background-color: #F4F4F4;
-}
-.transacoesAdicionadas::-webkit-scrollbar {
-    width: 6px;
-    background: #F4F4F4;
-    height: 50px;
-}
-.transacoesAdicionadas::-webkit-scrollbar-thumb {
-    background: #dad7d7;
-} */
 .card{
     display: flex;
     justify-content: space-between;
