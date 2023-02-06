@@ -24,8 +24,8 @@ pValorDespesas.innerText = "R$ 0,00"
 let positiveValues = [];
 let negativeValues = [];
 
-addButton.addEventListener("click", ()=>{
-
+addButton.addEventListener("click", (event)=>{
+  
     indiceCard ++
 
     const divCard = document.createElement("div");
