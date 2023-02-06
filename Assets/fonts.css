@@ -1,37 +1,43 @@
+:root {
+    --cor-random-font: #fff;
+    --cor-saldo-font: #02a9fb;
+    --cor-green: #0ec074;
+    --cor-red: #f6545d;
+}
 .mainFont{
     font-family: Roboto, arial;
     font-weight: 500;
     font-size: 13px;
-    color: #fff;
+    color: var(--cor-random-font);
 }
 .titleFont{
     font-family: Roboto, arial;
     font-weight: 700;
     font-size: 26px;
-    color: #fff;
+    color: var(--cor-random-font);
     text-transform: uppercase;
 }
 .titleFontValue{
     font-family: Roboto, arial;
     font-weight: 700;
     font-size: 26px;
-    color: #02a9fb;
+    color: var(--cor-saldo-font);
 }
 .littleFont{
     font-family: Roboto, arial;
     font-weight: 500;
     font-size: 10px;
-    color: #fff;
+    color: var(--cor-random-font);
 }
 #green{
     font-family: Roboto, arial;
     font-weight: 500;
     font-size: 13px;
-    color: #0ec074;
+    color: var(--cor-green);
 }
 #red{
     font-family: Roboto, arial;
     font-weight: 500;
     font-size: 13px;
-    color: #f6545d;
+    color: var(--cor-red);
 }
