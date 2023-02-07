@@ -16,7 +16,6 @@ const pValorReceitas = document.querySelector("#green")
 const pValorDespesas = document.querySelector("#red")
 const pSaldoAtual = document.querySelector(".titleFontValue")
 
-
 pSaldoAtual.innerText = "R$ 0,00"
 pValorReceitas.innerText = "R$ 0,00"
 pValorDespesas.innerText = "R$ 0,00"
@@ -24,7 +23,7 @@ pValorDespesas.innerText = "R$ 0,00"
 let positiveValues = [];
 let negativeValues = [];
 
-addButton.addEventListener("click", (event)=>{
+addButton.addEventListener("click", ()=>{
   
     indiceCard ++
 
