@@ -124,4 +124,3 @@ addButton.addEventListener("click", ()=>{
 
   sessionStorage.setItem('positiveValues', JSON.stringify(positiveValues)) || [];
   sessionStorage.setItem('negativeValues', JSON.stringify(negativeValues)) || [];
-  console.log("ziriguidum")
