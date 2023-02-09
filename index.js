@@ -52,6 +52,16 @@ addButton.addEventListener("click", ()=>{
     pValue.id = "valor-" + indiceCard;
     divPriceAndTrash.append(pValue)
 
+    const editButton = document.createElement("button");
+    editButton.id = "editButton"
+    divPriceAndTrash.append(editButton)
+    const editImg = document.createElement("img");
+    editImg.src = "Imagens/EDIT-BUTTON.png"
+    editImg.width = "18"
+    editImg.height = "18"
+    editImg.classList.add("edit")
+    editButton.append(editImg)
+
     const deleteButton = document.createElement("button");
     deleteButton.id = "deleteButton"
     deleteButton.addEventListener("click", ()=>{

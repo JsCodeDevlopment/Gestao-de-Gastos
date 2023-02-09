@@ -110,6 +110,10 @@ body{
     all: unset;
     cursor: pointer;
 }
+#editButton{
+    all: unset;
+    cursor: pointer;
+}
 #addButton:hover{
     transform: scale(1.1);
     transition: all, 0.2s;
