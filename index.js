@@ -25,6 +25,11 @@ let negativeValues = [];
 
 addButton.addEventListener("click", ()=>{
   
+  if (inputName.value === "" || inputValue.value === "") {
+    alert("Preencha os campos!")
+    return
+  }
+
     indiceCard ++
 
     const divCard = document.createElement("div");
@@ -101,6 +106,12 @@ addButton.addEventListener("click", ()=>{
     deleteInputValues()
     sessionStorage.setItem('positiveValues', JSON.stringify(positiveValues))
     sessionStorage.setItem('negativeValues', JSON.stringify(negativeValues))
+  })
+
+  inputValue.addEventListener("keypress", (e)=>{
+    if(e.key === "e"){
+      e.preventDefault()
+    }
   })
 
   function updateBalance (positiveValues, negativeValues) {
