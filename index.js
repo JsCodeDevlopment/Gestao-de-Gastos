@@ -117,8 +117,6 @@ addButton.addEventListener("click", () => {
   updateExpense(negativeValues);
   updateBalance(positiveValues, negativeValues);
   deleteInputValues();
-  sessionStorage.setItem("positiveValues", JSON.stringify(positiveValues));
-  sessionStorage.setItem("negativeValues", JSON.stringify(negativeValues));
 });
 
 inputValue.addEventListener("keypress", (e) => {
@@ -160,6 +158,3 @@ function updateExpense(negativeValues) {
   );
   pValorDespesas.innerText = currencyFormatter.format(newExpense);
 }
-
-sessionStorage.setItem("positiveValues", JSON.stringify(positiveValues)) || [];
-sessionStorage.setItem("negativeValues", JSON.stringify(negativeValues)) || [];
