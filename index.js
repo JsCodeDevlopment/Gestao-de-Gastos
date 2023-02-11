@@ -1,4 +1,4 @@
-import { start } from "./Modules/animations.js";
+import { start, toggleEditImage } from "./Modules/animations.js";
 import { toggleTrashImage } from "./Modules/animations.js";
 import { deleteInputValues } from "./Modules/animations.js";
 import { createCard } from "./Modules/create-card.js";
@@ -52,7 +52,7 @@ console.log (negativeValues)
 
   document.querySelectorAll(".card").forEach((card) => {
     const atualEditImage = document.querySelector(`#${card.id} .edit`);
-    toggleTrashImage(atualEditImage);
+    toggleEditImage(atualEditImage);
   });
 
   let input = parseInt(inputValue.value);
