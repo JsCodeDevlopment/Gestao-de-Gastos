@@ -1,118 +1,62 @@
 import { start } from "./Modules/animations.js";
 import { toggleTrashImage } from "./Modules/animations.js";
 import { deleteInputValues } from "./Modules/animations.js";
+import { createCard } from "./Modules/create-card.js";
 import { toggleTheme } from "./Modules/theme.js";
+import { updateBalance, updateExpense, updateRevenue, } from "./Modules/update-values.js";
 
 start();
 
 let indiceCard = 0;
 
-const currencyFormatter = new Intl.NumberFormat(undefined, {
-  style: "currency",
-  currency: "BRL",
-});
-
 const inputName = document.querySelector("#nameInput");
 const inputValue = document.querySelector("#numberInput");
 const addButton = document.querySelector("#addButton");
 const divReceptora = document.querySelector(".transacoesAdicionadas");
-const pValorReceitas = document.querySelector("#green");
-const pValorDespesas = document.querySelector("#red");
-const pSaldoAtual = document.querySelector(".titleFontValue");
-
-pSaldoAtual.innerText = "R$ 0,00";
-pValorReceitas.innerText = "R$ 0,00";
-pValorDespesas.innerText = "R$ 0,00";
+const editIdInput = document.querySelector("#editCardId");
 
 let positiveValues = [];
 let negativeValues = [];
+
+function addNumber(input) {
+  if (input >= 0) {
+    positiveValues.push(input);
+  } else {
+    negativeValues.push(input);
+  }
+}
 
 addButton.addEventListener("click", () => {
   if (inputName.value === "" || inputValue.value === "") {
     alert("Preencha os campos!");
     return;
   }
-
+console.log (positiveValues)
+console.log (negativeValues)
   indiceCard++;
 
-  const divCard = document.createElement("div");
-  divCard.className = "card";
-  divCard.id = "card-" + indiceCard;
-  divReceptora.appendChild(divCard);
+  const card = createCard(
+    indiceCard,
+    inputName.value,
+    inputValue.value,
+    editIdInput,
+    positiveValues,
+    negativeValues
+  );
+  divReceptora.appendChild(card);
 
-  const pName = document.createElement("p");
-  pName.className = "mainFont";
-  pName.innerText = `${inputName.value}`;
-  divCard.append(pName);
-
-  const divPriceAndTrash = document.createElement("div");
-  divPriceAndTrash.className = "priceAndTrash";
-  divCard.append(divPriceAndTrash);
-
-  const pValue = document.createElement("p");
-  pValue.className = "mainFont";
-  pValue.innerText = currencyFormatter.format(inputValue.value);
-  pValue.id = "valor-" + indiceCard;
-  divPriceAndTrash.append(pValue);
-
-  const editButton = document.createElement("button");
-  editButton.id = "editButton";
-  divPriceAndTrash.append(editButton);
-  const editImg = document.createElement("img");
-  editImg.src = "Imagens/EDIT-BUTTON.png";
-  editImg.width = "18";
-  editImg.height = "18";
-  editImg.classList.add("edit");
-  editButton.append(editImg);
-
-  const deleteButton = document.createElement("button");
-  deleteButton.id = "deleteButton";
-  deleteButton.addEventListener("click", () => {
-    const card = deleteButton.closest(".card");
-    card.remove();
-    function removeValue(input) {
-      if (input >= 0) {
-        positiveValues = positiveValues.filter(function (el) {
-          return el !== input;
-        });
-      } else {
-        negativeValues = negativeValues.filter(function (el) {
-          return el !== input;
-        });
-      }
-      updateRevenue(positiveValues);
-      updateExpense(negativeValues);
-      updateBalance(positiveValues, negativeValues);
-    }
-    removeValue(input);
-  });
-
-  const trashImage = document.createElement("img");
-  trashImage.src = "Imagens/LIXEIRA FECHADA.png";
-  trashImage.width = "14";
-  trashImage.height = "18";
-  trashImage.classList.add("trash");
-  deleteButton.append(trashImage);
-
-  divPriceAndTrash.append(deleteButton);
   document.querySelectorAll(".card").forEach((card) => {
     const atualTrashImage = document.querySelector(`#${card.id} .trash`);
     toggleTrashImage(atualTrashImage);
   });
-  document.querySelectorAll("valor-").forEach((pValue) => {
-    const pValueAcrecimo = document.querySelector(`#${pValue.id}`);
+
+  document.querySelectorAll(".card").forEach((card) => {
+    const atualEditImage = document.querySelector(`#${card.id} .edit`);
+    toggleTrashImage(atualEditImage);
   });
 
-  function addNumber(input) {
-    if (input >= 0) {
-      positiveValues.push(input);
-    } else {
-      negativeValues.push(input);
-    }
-  }
   let input = parseInt(inputValue.value);
   addNumber(input);
-
   updateRevenue(positiveValues);
   updateExpense(negativeValues);
   updateBalance(positiveValues, negativeValues);
@@ -125,36 +69,5 @@ inputValue.addEventListener("keypress", (e) => {
   }
 });
 
-const toggleThemeButton = document.querySelector("#toggleThemeButton")
-toggleThemeButton.addEventListener("click", toggleTheme)
-
-function updateBalance(positiveValues, negativeValues) {
-  const valoresPositivos = positiveValues.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    0
-  );
-  const valoresNegativos = negativeValues.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    0
-  );
-
-  const calc = valoresPositivos + valoresNegativos;
-
-  pSaldoAtual.innerText = currencyFormatter.format(calc);
-}
-
-function updateRevenue(positiveValues) {
-  const newRevenue = positiveValues.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    0
-  );
-  pValorReceitas.innerText = currencyFormatter.format(newRevenue);
-}
-
-function updateExpense(negativeValues) {
-  const newExpense = negativeValues.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    0
-  );
-  pValorDespesas.innerText = currencyFormatter.format(newExpense);
-}
+const toggleThemeButton = document.querySelector("#toggleThemeButton");
+toggleThemeButton.addEventListener("click", toggleTheme);

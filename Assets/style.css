@@ -84,7 +84,7 @@ body{
     border-radius: 5px;
     align-items: center;
 }
-.priceAndTrash{
+.cardContent{
     display: flex;
     gap: 11px;
 }
@@ -129,6 +129,14 @@ body{
 #deleteButton{
     all: unset;
     cursor: pointer;
+}
+.edit, .trash {
+    height: 18px;
+    width: auto;
+}
+.trash{
+    width: 13px;
+    height: 18px;
 }
 footer{
     display: flex;
