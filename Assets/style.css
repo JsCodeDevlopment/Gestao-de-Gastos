@@ -177,6 +177,7 @@ footer{
         padding: 10px;
     }
     .contentInput{
+        display: flex;
         flex-wrap: wrap;
     }
     #nameInput{
@@ -190,7 +191,7 @@ footer{
         width: 100%;
         padding: 5px;
         border-radius: 0 0 10px 10px;
-        justify-content: space-between;
+        justify-content: space-around;
         gap: 0px;
     }
  }
