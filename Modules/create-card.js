@@ -1,5 +1,5 @@
 import { currencyFormatter } from "./currency-formatter.js";
-import { updateBalance, updateExpense, updateRevenue } from "./update-values.js";
+import { values } from "./values.js";
 
 function createCardContainer(className, id) {
   const container = document.createElement("div");
@@ -41,27 +41,7 @@ function createImage(src, className) {
   return image;
 }
 
-function removeValue(input, positiveValues, negativeValues) {
-  let newPositiveValues = [...positiveValues]
-  let newNegativeValues = [...negativeValues]
-  if (input >= 0) {
-    newPositiveValues = positiveValues.filter(function (el) {
-      return el === input;
-    });
-  } else {
-    newNegativeValues = negativeValues.filter(function (el) {
-      return el === input;
-    });
-  }
-  console.log(newPositiveValues)
-  console.log(newNegativeValues)
-
-  updateRevenue(newPositiveValues);
-  updateExpense(newNegativeValues);
-  updateBalance(newPositiveValues, newNegativeValues);
-}
-
-export function createCard(index, cardTitle, value, editIdInput, positiveValues, negativeValues) {
+export function createCard(index, cardTitle, value, editIdInput) {
   const cardContainer = createCardContainer("card", `card-${index}`);
   const cardName = createCardTitle("mainFont", cardTitle);
   const cardContentContainer = createCardContentContainer("cardContent");
@@ -79,11 +59,11 @@ export function createCard(index, cardTitle, value, editIdInput, positiveValues,
     () => {
       const card = deleteButton.closest(".card");
       card.remove();
-      removeValue(value, positiveValues, negativeValues);
+      values.removeValue(value)
     }, deleteImage);
 
   cardContentContainer.append(cardPrice, editButton, deleteButton);
   cardContainer.append(cardName, cardContentContainer);
-  
+
   return cardContainer
 }

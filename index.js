@@ -3,7 +3,7 @@ import { toggleTrashImage } from "./Modules/animations.js";
 import { deleteInputValues } from "./Modules/animations.js";
 import { createCard } from "./Modules/create-card.js";
 import { toggleTheme } from "./Modules/theme.js";
-import { updateBalance, updateExpense, updateRevenue, } from "./Modules/update-values.js";
+import { values } from "./Modules/values.js";
 
 start();
 
@@ -15,33 +15,23 @@ const addButton = document.querySelector("#addButton");
 const divReceptora = document.querySelector(".transacoesAdicionadas");
 const editIdInput = document.querySelector("#editCardId");
 
-let positiveValues = [];
-let negativeValues = [];
 
-function addNumber(input) {
-  if (input >= 0) {
-    positiveValues.push(input);
-  } else {
-    negativeValues.push(input);
-  }
-}
 
 addButton.addEventListener("click", () => {
   if (inputName.value === "" || inputValue.value === "") {
     alert("Preencha os campos!");
     return;
   }
-console.log (positiveValues)
-console.log (negativeValues)
+
   indiceCard++;
+
+  const input = inputValue.valueAsNumber;
 
   const card = createCard(
     indiceCard,
     inputName.value,
-    inputValue.value,
-    editIdInput,
-    positiveValues,
-    negativeValues
+    input,
+    editIdInput
   );
   divReceptora.appendChild(card);
 
@@ -55,11 +45,9 @@ console.log (negativeValues)
     toggleEditImage(atualEditImage);
   });
 
-  let input = parseInt(inputValue.value);
-  addNumber(input);
-  updateRevenue(positiveValues);
-  updateExpense(negativeValues);
-  updateBalance(positiveValues, negativeValues);
+  values.addNewValue(input)
+  values.updateAll()
+
   deleteInputValues();
 });
 
