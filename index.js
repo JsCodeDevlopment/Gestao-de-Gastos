@@ -3,7 +3,7 @@ import { toggleTrashImage } from "./Modules/animations.js";
 import { deleteInputValues } from "./Modules/animations.js";
 import { createCard } from "./Modules/create-card.js";
 import { toggleTheme } from "./Modules/theme.js";
-import { values } from "./Modules/values.js";
+import { transactionsInfo } from "./Modules/transactions-info.js";
 
 start();
 
@@ -25,12 +25,15 @@ addButton.addEventListener("click", () => {
 
   indiceCard++;
 
-  const input = inputValue.valueAsNumber;
+  const transaction =  {
+    id: crypto.randomUUID(),
+    title: inputName.value,
+    amount: inputValue.valueAsNumber,
+  }
 
   const card = createCard(
     indiceCard,
-    inputName.value,
-    input,
+    transaction,
     editIdInput
   );
   divReceptora.appendChild(card);
@@ -45,8 +48,8 @@ addButton.addEventListener("click", () => {
     toggleEditImage(atualEditImage);
   });
 
-  values.addNewValue(input)
-  values.updateAll()
+  transactionsInfo.addNewTransaction(transaction)
+  transactionsInfo.updateAll()
 
   deleteInputValues();
 });

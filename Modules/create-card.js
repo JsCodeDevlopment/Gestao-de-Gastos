@@ -1,5 +1,5 @@
 import { currencyFormatter } from "./currency-formatter.js";
-import { values } from "./values.js";
+import { transactionsInfo } from "./transactions-info.js";
 
 function createCardContainer(className, id) {
   const container = document.createElement("div");
@@ -41,11 +41,11 @@ function createImage(src, className) {
   return image;
 }
 
-export function createCard(index, cardTitle, value, editIdInput) {
+export function createCard(index, transaction, editIdInput) {
   const cardContainer = createCardContainer("card", `card-${index}`);
-  const cardName = createCardTitle("mainFont", cardTitle);
+  const cardTitle = createCardTitle("mainFont", transaction.title);
   const cardContentContainer = createCardContentContainer("cardContent");
-  const cardPrice = createCardPrice("mainFont", value);
+  const cardPrice = createCardPrice("mainFont", transaction.amount);
   const editImage = createImage("Imagens/EDIT-BUTTON.png", "edit");
   const editButton = createCardButton(
     "editButton",
@@ -59,11 +59,11 @@ export function createCard(index, cardTitle, value, editIdInput) {
     () => {
       const card = deleteButton.closest(".card");
       card.remove();
-      values.removeValue(value)
+      transactionsInfo.removeTransaction(transaction)
     }, deleteImage);
 
   cardContentContainer.append(cardPrice, editButton, deleteButton);
-  cardContainer.append(cardName, cardContentContainer);
+  cardContainer.append(cardTitle, cardContentContainer);
 
   return cardContainer
 }
