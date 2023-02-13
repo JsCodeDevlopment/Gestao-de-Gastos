@@ -49,8 +49,8 @@ addButton.addEventListener("click", () => {
       `#${cardEditIdInput.value} #price`
     );
     if (!cardTitle || !cardPrice) {
-      alert("Não foi encontrado nenhum card para atualizar.");
-      
+      alert("Não foi encontrado o card especifico para atualizar.");
+
       resetInputs();
 
       return;
