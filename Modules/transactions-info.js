@@ -1,66 +1,77 @@
 import { currencyFormatter } from "./currency-formatter.js";
 
-const elementTotalIncome = document.querySelector("#green");
-const elementTotalCost = document.querySelector("#red");
+const elementIncome = document.querySelector("#green");
+const elementCost = document.querySelector("#red");
 const elementBalance = document.querySelector(".titleFontValue");
 
-elementTotalIncome.innerText = currencyFormatter.format(0);
-elementTotalCost.innerText = currencyFormatter.format(0);
+elementIncome.innerText = currencyFormatter.format(0);
+elementCost.innerText = currencyFormatter.format(0);
 elementBalance.innerText = currencyFormatter.format(0);
 
 export const transactionsInfo = {
   balance: 0,
-  totalIncome: 0,
-  totalCost: 0,
-  positiveTransactions: [],
-  negativeTransactions: [],
+  income: 0,
+  cost: 0,
+  transactions: [],
   updateBalance() {
-    const totalIncome = this.positiveTransactions.reduce(
-      (accumulator, currentTransaction) => accumulator + currentTransaction.amount, 0);
+    const calculatedBalance = this.transactions.reduce(
+      (total, currentTransaction) => total + currentTransaction.amount,
+      0
+    );
 
-    const totalCost = this.negativeTransactions.reduce(
-      (accumulator, currentTransaction) => accumulator + currentTransaction.amount, 0);
-
-    const calc = totalIncome + totalCost;
-    this.balance = calc
+    this.balance = calculatedBalance;
   },
   updateIncome() {
-    const calculatedTotalIncome = this.positiveTransactions.reduce(
-      (accumulator, currentTransaction) => accumulator + currentTransaction.amount, 0);
-
-    this.totalIncome = calculatedTotalIncome;
+    const calculatedIncome = this.transactions.reduce(
+      (total, currentTransaction) => {
+        if (currentTransaction.amount <= 0) {
+          return total;
+        }
+        return total + currentTransaction.amount;
+      },
+      0
+    );
+    this.income = calculatedIncome;
   },
   updateCost() {
-    const calculatedTotalCost = this.negativeTransactions.reduce(
-      (accumulator, currentTransaction) => accumulator + currentTransaction.amount, 0);
+    const calculatedTotalCost = this.transactions.reduce(
+      (total, currentTransaction) => {
+        if (currentTransaction.amount > 0) {
+          return total;
+        }
+        return total + currentTransaction.amount;
+      },
+      0
+    );
 
-    this.totalCost = calculatedTotalCost;
+    this.cost = calculatedTotalCost;
   },
   updateTextElements() {
-    elementBalance.innerText = currencyFormatter.format(this.balance)
-    elementTotalIncome.innerText = currencyFormatter.format(this.totalIncome)
-    elementTotalCost.innerText = currencyFormatter.format(this.totalCost)
+    elementBalance.innerText = currencyFormatter.format(this.balance);
+    elementIncome.innerText = currencyFormatter.format(this.income);
+    elementCost.innerText = currencyFormatter.format(this.cost);
   },
   updateAll() {
-    this.updateIncome()
-    this.updateCost()
-    this.updateBalance()
-    this.updateTextElements()
+    this.updateIncome();
+    this.updateCost();
+    this.updateBalance();
+    this.updateTextElements();
   },
-  removeTransaction(transactionToRemove) {
-    if (transactionToRemove.amount >= 0) {
-      this.positiveTransactions = this.positiveTransactions.filter((t) => t.id !== transactionToRemove.id)
-    } else {
-      this.negativeTransactions = this.negativeTransactions.filter((t) => t.id !== transactionToRemove.id)
-    }
+  removeTransaction(id) {
+    this.transactions = this.transactions.filter(t => t.id !== id)
 
-    this.updateAll()
+    this.updateAll();
   },
   addNewTransaction(transaction) {
-    if (transaction.amount >= 0) {
-      this.positiveTransactions.push(transaction)
-    } else {
-      this.negativeTransactions.push(transaction)
-    }
+    this.transactions.push(transaction)
+  },
+  updateTransaction(id, newTransaction) {
+    this.transactions = this.transactions.map(transaction => transaction.id === id ? newTransaction : transaction)
+    this.updateAll()
+  },
+  getTransaction(id){
+    const transaction = this.transactions.find(t => t.id === id)
+
+    return transaction
   }
-}
+};
