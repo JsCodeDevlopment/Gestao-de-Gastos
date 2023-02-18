@@ -1,9 +1,34 @@
 export function start() {
   const pMesDeReferencia = document.querySelector("#refMes")
-  let mesDeReferencia = prompt("Seja Bem Vindo!\n" + "Para começar, primeiramente diga-nos qual é o mês de referência.\n"
-  + "Vamos lá!?\n" + "Digite abaixo o nome do mês\n"
-  + "Ex: Agosto")
-pMesDeReferencia.innerText = `${mesDeReferencia}`
+
+  const selectMes = document.createElement("select")
+  selectMes.id = "selectMes"
+  pMesDeReferencia.append(selectMes)
+
+  const defaltOption = document.createElement("option")
+  defaltOption.value = "text"
+  defaltOption.innerText = "ESCOLHA O MÊS!"
+  selectMes.append(defaltOption)
+
+  function makeOptions(value, mes) {
+    const option = document.createElement("option")
+    option.value = value
+    option.innerText = mes
+    selectMes.append(option)
+    return option
+  }
+  makeOptions("text", "JANEIRO")
+  makeOptions("text", "FEVEREIRO")
+  makeOptions("text", "MARÇO")
+  makeOptions("text", "ABRIL")
+  makeOptions("text", "MAIO")
+  makeOptions("text", "JUNHO")
+  makeOptions("text", "JULHO")
+  makeOptions("text", "AGOSTO")
+  makeOptions("text", "SETEMBRO")
+  makeOptions("text", "OUTUBRO")
+  makeOptions("text", "NOVEMBRO")
+  makeOptions("text", "DEZEMBRO")
 }
 
 export function toggleTrashImage(atualTrashImage) {

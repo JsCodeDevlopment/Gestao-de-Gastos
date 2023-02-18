@@ -15,6 +15,13 @@ body{
     --cor-back: #121617;
     --cor-input: #fff;
   }
+#selectMes{
+    background-color: var(--cor-principal);
+    color: var(--cor-input);
+    border: solid 2px var(--cor-secundaria);
+    border-radius: 10px;
+    padding: 3px;
+}
 .mainContainer{
     display: flex;
     flex-direction: column;
