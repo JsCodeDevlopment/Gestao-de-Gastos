@@ -29,9 +29,10 @@ function createCardPrice(className, value, id) {
   return price;
 }
 
-function createCardButton(id, callback, content) {
+function createCardButton(id, callback, content, ariaLabel = "") {
   const button = document.createElement("button");
   button.id = id;
+  button.ariaLabel = ariaLabel;
   button.append(content);
   button.addEventListener("click", callback);
   return button;
@@ -63,8 +64,10 @@ export function createCard(index, transaction) {
       transactionEditIdInput.value = transactionToEdit.id;
       inputName.value = transactionToEdit.title
       inputValue.value = transactionToEdit.amount
+      inputName.focus()
     },
-    editImage
+    editImage,
+    `Editar transação ${transaction.title}`
   );
   const deleteImage = createImage("Imagens/LIXEIRA FECHADA.png", "trash");
   const deleteButton = createCardButton(
@@ -74,7 +77,8 @@ export function createCard(index, transaction) {
       card.remove();
       transactionsInfo.removeTransaction(transaction.id);
     },
-    deleteImage
+    deleteImage,
+    `Deletar transação ${transaction.title}`
   );
 
   cardContentContainer.append(cardPrice, editButton, deleteButton);

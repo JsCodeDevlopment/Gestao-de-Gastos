@@ -99,7 +99,7 @@ body{
     gap: 11px;
 }
 #nameInput{
-    width: 140px;
+    width: 60%;
     height: 27px;
     background-color: var(--cor-principal);
     border: solid 2px var(--cor-secundaria);
@@ -108,7 +108,7 @@ body{
     color: var(--cor-input);
 }
 #numberInput{
-    width: 114px;
+    width: 60%;
     height: 27px;
     background-color: var(--cor-principal);
     border: solid 2px var(--cor-secundaria);
@@ -167,7 +167,7 @@ footer{
     display: flex;
     gap: 6px;
 }
-@media only screen and (max-width:500px){
+@media (max-width:500px){
     .mainContainer{
        width: 90%;
        height: auto;
@@ -190,11 +190,9 @@ footer{
         display: flex;
         flex-wrap: wrap;
     }
-    #nameInput{
-        width: 110px;
-    }
-    #numberInput{
-        width: 100px;
+    #addButton > img{
+        height: 135%;
+        width: 135%;
     }
     footer{
         height: 40px;

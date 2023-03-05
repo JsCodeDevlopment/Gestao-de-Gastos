@@ -18,12 +18,11 @@
     <main class="mainContainer">
         <nav class="navegation">
             <div class="defaultText">
-                <p class="mainFont">Mês de Referência</p>
+                <p id="ref-mes" class="mainFont">Mês de Referência</p>
                 <p class="mainFont">SALDO ATUAL</p>
             </div>
             <div class="defaultText">
-                <select id="selectMes">
-                    <option disabled>ESCOLHA O MÊS!</option>
+                <select aria-labelledby="ref-mes" id="selectMes">
                     <option value="JANEIRO">JANEIRO</option>
                     <option value="FEVEREIRO">FEVEREIRO</option>
                     <option value="MARÇO">MARÇO</option>
@@ -41,13 +40,12 @@
             </div>
         </nav>
         <section class="container">
-        <div class="contentInput"> 
-            <p class="mainFont">Adicionar Transação</p>
-            <input id="nameInput" type="text" alt="name" placeholder="Nome:">
-            <input id="numberInput" type="number" alt="value" placeholder="Valor:">
+        <div class="contentInput">
+            <input id="nameInput" type="text" placeholder="Nome:">
+            <input id="numberInput" type="number" placeholder="Valor:">
             <input type="hidden" id="editCardId">
             <input type="hidden" id="editTransactionId">
-            <button id="addButton"><img src="Imagens/ADD.png" alt="addButton" width="27px" height="27px"></button>
+            <button aria-label="Salvar a transação" id="addButton"><img src="Imagens/ADD.png" alt="" width="27px" height="27px"></button>
         </div>
         <div class="titleTransacoes">
             <p class="mainFont">TRANSAÇÕES</p>
@@ -64,7 +62,7 @@
                 </div>
             </div>
             <div class="toggleThemeButton">
-                <button id="toggleThemeButton"><img id="darkModeImg" class="lightImg" src="Imagens/BUTTON LIGHT MODE.png" alt="receitas" width="45px" height="45px"></button>
+                <button aria-hidden="true" id="toggleThemeButton"><img id="darkModeImg" class="lightImg" src="Imagens/BUTTON LIGHT MODE.png" alt="" width="45px" height="45px"></button>
             </div>
             <div class="despesas">
                 <img src="Imagens/DESPESAS.png" alt="despesas" width="32px" height="32px">
