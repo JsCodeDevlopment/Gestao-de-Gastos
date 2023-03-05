@@ -1,12 +1,8 @@
-import { start, toggleEditImage } from "./Modules/animations.js";
-import { toggleTrashImage } from "./Modules/animations.js";
-import { deleteInputValues } from "./Modules/animations.js";
+import { toggleTrashImage, toggleEditImage } from "./Modules/animations.js";
 import { createCard } from "./Modules/create-card.js";
 import { currencyFormatter } from "./Modules/currency-formatter.js";
 import { toggleTheme } from "./Modules/theme.js";
 import { transactionsInfo } from "./Modules/transactions-info.js";
-
-start();
 
 let indiceCard = 0;
 
@@ -81,7 +77,7 @@ addButton.addEventListener("click", () => {
   transactionsInfo.addNewTransaction(transaction);
   transactionsInfo.updateAll();
 
-  deleteInputValues();
+  resetInputs()
 });
 
 inputValue.addEventListener("keypress", (e) => {

@@ -18,12 +18,26 @@
     <main class="mainContainer">
         <nav class="navegation">
             <div class="defaultText">
-                <P class="mainFont">Mês de Referência</P>
-                <P class="mainFont">SALDO ATUAL</P>
+                <p class="mainFont">Mês de Referência</p>
+                <p class="mainFont">SALDO ATUAL</p>
             </div>
             <div class="defaultText">
-                <P id="refMes" class="titleFont"></P>
-                <P class="titleFontValue"></P>
+                <select id="selectMes">
+                    <option disabled>ESCOLHA O MÊS!</option>
+                    <option value="JANEIRO">JANEIRO</option>
+                    <option value="FEVEREIRO">FEVEREIRO</option>
+                    <option value="MARÇO">MARÇO</option>
+                    <option value="ABRIL">ABRIL</option>
+                    <option value="MAIO">MAIO</option>
+                    <option value="JUNHO">JUNHO</option>
+                    <option value="JULHO">JULHO</option>
+                    <option value="AGOSTO">AGOSTO</option>
+                    <option value="SETEMBRO">SETEMBRO</option>
+                    <option value="OUTUBRO">OUTUBRO</option>
+                    <option value="NOVEMBRO">NOVEMBRO</option>
+                    <option value="DEZEMBRO">DEZEMBRO</option>
+                </select>
+                <p class="titleFontValue">R&#36; 0,00</p>
             </div>
         </nav>
         <section class="container">
@@ -46,7 +60,7 @@
                 <img src="Imagens/RECEITAS.png" alt="receitas" width="32px" height="32px">
                 <div>
                     <p class="littleFont">Receitas</p>
-                    <p id="green"></p>
+                    <p id="green">R&#36; 0,00</p>
                 </div>
             </div>
             <div class="toggleThemeButton">
@@ -56,7 +70,7 @@
                 <img src="Imagens/DESPESAS.png" alt="despesas" width="32px" height="32px">
                 <div>
                     <p class="littleFont">Despesas</p>
-                    <p id="red"></p>
+                    <p id="red">R&#36; 0,00</p>
                 </div>
             </div>
         </footer>

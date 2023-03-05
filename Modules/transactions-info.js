@@ -4,10 +4,6 @@ const elementIncome = document.querySelector("#green");
 const elementCost = document.querySelector("#red");
 const elementBalance = document.querySelector(".titleFontValue");
 
-elementIncome.innerText = currencyFormatter.format(0);
-elementCost.innerText = currencyFormatter.format(0);
-elementBalance.innerText = currencyFormatter.format(0);
-
 export const transactionsInfo = {
   balance: 0,
   income: 0,
