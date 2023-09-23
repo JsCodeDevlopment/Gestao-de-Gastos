@@ -3,6 +3,9 @@ import { createCard } from "./Modules/create-card.js";
 import { currencyFormatter } from "./Modules/currency-formatter.js";
 import { toggleTheme } from "./Modules/theme.js";
 import { transactionsInfo } from "./Modules/transactions-info.js";
+import { getDate } from "./Modules/getDate.js";
+
+getDate();
 
 let indiceCard = 0;
 
@@ -77,7 +80,7 @@ addButton.addEventListener("click", () => {
   transactionsInfo.addNewTransaction(transaction);
   transactionsInfo.updateAll();
 
-  resetInputs()
+  resetInputs();
 });
 
 inputValue.addEventListener("keypress", (e) => {
