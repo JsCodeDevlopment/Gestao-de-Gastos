@@ -26,6 +26,7 @@ function resetInputs() {
 transactionsInfo.transactions.forEach((transaction) => {
   const card = createCard(indiceCard, transaction);
   divReceptora.append(card);
+  transactionsInfo.updateAll()
   indiceCard++;
 });
 
