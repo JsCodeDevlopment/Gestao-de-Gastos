@@ -1,3 +1,4 @@
+import { toggleEditImage, toggleTrashImage } from "./animations.js";
 import { currencyFormatter } from "./currency-formatter.js";
 import { transactionsInfo } from "./transactions-info.js";
 
@@ -50,6 +51,7 @@ export function createCard(index, transaction) {
   const cardContentContainer = createCardContentContainer("cardContent");
   const cardPrice = createCardPrice("mainFont", transaction.amount, "price");
   const editImage = createImage("Imagens/EDIT-BUTTON.png", "edit");
+  toggleEditImage(editImage)
   const editButton = createCardButton(
     "editButton",
     () => {
@@ -70,6 +72,7 @@ export function createCard(index, transaction) {
     `Editar transação ${transaction.title}`
   );
   const deleteImage = createImage("Imagens/LIXEIRA FECHADA.png", "trash");
+  toggleTrashImage(deleteImage)
   const deleteButton = createCardButton(
     "deleteButton",
     () => {

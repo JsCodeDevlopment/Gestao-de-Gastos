@@ -23,6 +23,12 @@ function resetInputs() {
   transactionEditIdInput.value = "";
 }
 
+transactionsInfo.transactions.forEach((transaction) => {
+  const card = createCard(indiceCard, transaction);
+  divReceptora.append(card);
+  indiceCard++;
+});
+
 addButton.addEventListener("click", () => {
   if (inputName.value === "" || inputValue.value === "") {
     alert("Preencha os campos!");
@@ -66,16 +72,6 @@ addButton.addEventListener("click", () => {
 
   const card = createCard(indiceCard, transaction);
   divReceptora.appendChild(card);
-
-  document.querySelectorAll(".card").forEach((card) => {
-    const atualTrashImage = document.querySelector(`#${card.id} .trash`);
-    toggleTrashImage(atualTrashImage);
-  });
-
-  document.querySelectorAll(".card").forEach((card) => {
-    const atualEditImage = document.querySelector(`#${card.id} .edit`);
-    toggleEditImage(atualEditImage);
-  });
 
   transactionsInfo.addNewTransaction(transaction);
   transactionsInfo.updateAll();

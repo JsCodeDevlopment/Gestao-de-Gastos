@@ -8,7 +8,7 @@ export const transactionsInfo = {
   balance: 0,
   income: 0,
   cost: 0,
-  transactions: [],
+  transactions: JSON.parse(localStorage.getItem("transactions")) ?? [],
   updateBalance() {
     const calculatedBalance = this.transactions.reduce(
       (total, currentTransaction) => total + currentTransaction.amount,
@@ -54,20 +54,24 @@ export const transactionsInfo = {
     this.updateTextElements();
   },
   removeTransaction(id) {
-    this.transactions = this.transactions.filter(t => t.id !== id)
-
+    this.transactions = this.transactions.filter((t) => t.id !== id);
     this.updateAll();
+    localStorage.setItem("transactions", JSON.stringify(this.transactions));
   },
   addNewTransaction(transaction) {
-    this.transactions.push(transaction)
+    this.transactions.push(transaction);
+    localStorage.setItem("transactions", JSON.stringify(this.transactions));
   },
   updateTransaction(id, newTransaction) {
-    this.transactions = this.transactions.map(transaction => transaction.id === id ? newTransaction : transaction)
-    this.updateAll()
+    this.transactions = this.transactions.map((transaction) =>
+      transaction.id === id ? newTransaction : transaction
+    );
+    this.updateAll();
+    localStorage.setItem("transactions", JSON.stringify(this.transactions));
   },
-  getTransaction(id){
-    const transaction = this.transactions.find(t => t.id === id)
+  getTransaction(id) {
+    const transaction = this.transactions.find((t) => t.id === id);
 
-    return transaction
-  }
+    return transaction;
+  },
 };
