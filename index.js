@@ -1,9 +1,8 @@
-import { toggleTrashImage, toggleEditImage } from "./Modules/animations.js";
 import { createCard } from "./Modules/create-card.js";
 import { currencyFormatter } from "./Modules/currency-formatter.js";
+import { getDate } from "./Modules/getDate.js";
 import { toggleTheme } from "./Modules/theme.js";
 import { transactionsInfo } from "./Modules/transactions-info.js";
-import { getDate } from "./Modules/getDate.js";
 
 getDate();
 
@@ -40,6 +39,7 @@ addButton.addEventListener("click", () => {
     id: crypto.randomUUID(),
     title: inputName.value,
     amount: inputValue.valueAsNumber,
+    completed: false,
   };
 
   if (cardEditIdInput.value !== "" || transactionEditIdInput.value !== "") {

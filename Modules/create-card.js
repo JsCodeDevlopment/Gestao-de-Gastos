@@ -8,11 +8,12 @@ function createCardContainer(className, id) {
   container.id = id;
   return container;
 }
+
 function createCardTitle(className, text, id) {
   const title = document.createElement("p");
   title.className = className;
   title.innerText = text;
-  title.id = id
+  title.id = id;
   return title;
 }
 
@@ -26,8 +27,30 @@ function createCardPrice(className, value, id) {
   const price = document.createElement("p");
   price.className = className;
   price.innerText = currencyFormatter.format(value);
-  price.id = id
+  price.id = id;
   return price;
+}
+
+function createSwitch(transaction, cardTitle) {
+  const switchLabel = document.createElement("label");
+  switchLabel.className = "switch";
+
+  const switchInput = document.createElement("input");
+  switchInput.type = "checkbox";
+  switchInput.checked = transaction.completed;
+  switchInput.addEventListener("change", () => {
+    transaction.completed = switchInput.checked;
+    transactionsInfo.updateTransaction(transaction.id, transaction);
+    cardTitle.style.textDecoration = transaction.completed
+      ? "line-through"
+      : "none";
+  });
+
+  const switchSpan = document.createElement("span");
+  switchSpan.className = "slider round";
+
+  switchLabel.append(switchInput, switchSpan);
+  return switchLabel;
 }
 
 function createCardButton(id, callback, content, ariaLabel = "") {
@@ -38,6 +61,7 @@ function createCardButton(id, callback, content, ariaLabel = "") {
   button.addEventListener("click", callback);
   return button;
 }
+
 function createImage(src, className) {
   const image = document.createElement("img");
   image.src = src;
@@ -51,28 +75,29 @@ export function createCard(index, transaction) {
   const cardContentContainer = createCardContentContainer("cardContent");
   const cardPrice = createCardPrice("mainFont", transaction.amount, "price");
   const editImage = createImage("Imagens/EDIT-BUTTON.png", "edit");
-  toggleEditImage(editImage)
+  toggleEditImage(editImage);
   const editButton = createCardButton(
     "editButton",
     () => {
       const card = editButton.closest(".card");
       const cardEditIdInput = document.querySelector("#editCardId");
-      const transactionEditIdInput = document.querySelector("#editTransactionId");
+      const transactionEditIdInput =
+        document.querySelector("#editTransactionId");
       const inputName = document.querySelector("#nameInput");
       const inputValue = document.querySelector("#numberInput");
-      const transactionToEdit = transactionsInfo.getTransaction(transaction.id)
+      const transactionToEdit = transactionsInfo.getTransaction(transaction.id);
 
       cardEditIdInput.value = card.id;
       transactionEditIdInput.value = transactionToEdit.id;
-      inputName.value = transactionToEdit.title
-      inputValue.value = transactionToEdit.amount
-      inputName.focus()
+      inputName.value = transactionToEdit.title;
+      inputValue.value = transactionToEdit.amount;
+      inputName.focus();
     },
     editImage,
     `Editar transação ${transaction.title}`
   );
   const deleteImage = createImage("Imagens/LIXEIRA FECHADA.png", "trash");
-  toggleTrashImage(deleteImage)
+  toggleTrashImage(deleteImage);
   const deleteButton = createCardButton(
     "deleteButton",
     () => {
@@ -83,8 +108,14 @@ export function createCard(index, transaction) {
     deleteImage,
     `Deletar transação ${transaction.title}`
   );
+  const switchElement = createSwitch(transaction, cardTitle);
 
-  cardContentContainer.append(cardPrice, editButton, deleteButton);
+  cardContentContainer.append(
+    cardPrice,
+    switchElement,
+    editButton,
+    deleteButton
+  );
   cardContainer.append(cardTitle, cardContentContainer);
 
   return cardContainer;
